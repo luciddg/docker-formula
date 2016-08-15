@@ -12,7 +12,7 @@ docker package dependencies:
       - ca-certificates
       - python-apt
 
-{%- if grains["oscodename"]|lower == 'jessie' and "version" not in docker%}
+{%- if grains["oscodename"]|lower == 'jessie' and "version" not in docker %}
 docker package repository:
   pkgrepo.managed:
     - name: deb http://http.debian.net/debian jessie-backports main
@@ -29,18 +29,18 @@ docker package repository:
     {%- endif %}
   {%- endif %}
 
-{%- if "version" in docker and use_old_repo %}
+  {%- if "version" in docker and use_old_repo %}
 docker package repository:
   pkgrepo.managed:
     - name: deb https://get.docker.com/ubuntu docker main
     - humanname: Old Docker Package Repository
     - keyid: d8576a8ba88d21e9
-{%- else %}
+  {%- else %}
 purge old packages:
   pkgrepo.absent:
     - name: deb https://get.docker.com/ubuntu docker main
   pkg.purged:
-    - pkgs: 
+    - pkgs:
       - lxc-docker*
       - docker.io*
     - require_in:
@@ -51,7 +51,7 @@ docker package repository:
     - name: deb https://apt.dockerproject.org/repo {{ grains["os"]|lower }}-{{ grains["oscodename"] }} main
     - humanname: {{ grains["os"] }} {{ grains["oscodename"]|capitalize }} Docker Package Repository
     - keyid: 58118E89F3A912897C070ADBF76221572C52609D
-{%- endif %}
+  {%- endif %}
     - keyserver: hkp://p80.pool.sks-keyservers.net:80
     - file: /etc/apt/sources.list.d/docker.list
     - refresh_db: True
