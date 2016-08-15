@@ -101,6 +101,7 @@ docker-unit-drop-in:
   file.managed:
     - name: /etc/systemd/system/docker.service.d/docker-defaults.conf
     - source: salt://docker/files/systemd.drop-in
+    - template: jinja
     - makedirs: True
     - require:
       - file: docker-config
