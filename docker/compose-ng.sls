@@ -4,7 +4,7 @@
   {%- set required_containers = [] %}
 {{id}} image:
   docker.pulled:
-  {%- if ':' in container.image %}
+  {%- if container.image and ':' in container.image %}
     {%- set image = container.image.split(':',1) %}
     - name: {{image[0]}}
     - tag: {{image[1]}}
