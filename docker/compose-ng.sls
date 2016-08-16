@@ -1,10 +1,10 @@
 {%- from "docker/map.jinja" import compose with context %}
-{%- for name, container in compose.items() %}
+{%- for name, container in compose.items() if 'image' in container %}
   {%- set id = container.container_name|d(name) %}
   {%- set required_containers = [] %}
 {{id}} image:
   docker.pulled:
-  {%- if 'image' in container and ':' in container.image %}
+  {%- if ':' in container.image %}
     {%- set image = container.image.split(':',1) %}
     - name: {{image[0]}}
     - tag: {{image[1]}}
