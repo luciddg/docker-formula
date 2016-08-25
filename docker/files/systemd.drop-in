@@ -1,12 +1,13 @@
-{% from "docker/map.jinja" import docker with context %}
-{% set daemon_arg = 'daemon' %}
-{% if 'version' in docker %}
-  {% set version_major = (docker.version|string).split('.')[0]|int %}
-  {% set version_minor = (docker.version|string).split('.')[1]|int %}
-  {% if version_major < 2 and version_minor < 8 %}
-    {% set daemon_arg = '-d' %}
-  {% endif %}
-{% endif %}
+{%- from "docker/map.jinja" import docker with context %}
+{%- set daemon_arg = 'daemon' %}
+{%- if 'version' in docker %}
+  {%- set version_major = (docker.version|string).split('.')[0]|int %}
+  {%- set version_minor = (docker.version|string).split('.')[1]|int %}
+  {%- if version_major < 2 and version_minor < 8 %}
+    {%- set daemon_arg = '-d' %}
+  {%- endif %}
+{%- endif %}
+[Service]
 EnvironmentFile=-/etc/default/docker
 ExecStart=
 ExecStart=/usr/bin/docker {{ daemon_arg }} $DOCKER_OPTS -H fd://
