@@ -111,6 +111,13 @@ reload-systemd:
     - name: service.systemctl_reload
     - watch:
       - file: docker-unit-drop-in
+
+start-on-boot:
+  module.run:
+    - name: service.enable
+    - m_name: docker
+    - require:
+      - file: docker-unit-drop-in
 {% endif %}
 
 docker-service:
