@@ -2,9 +2,9 @@
 
 docker:
   process_signature: '/usr/bin/docker'
-  install_docker_py: True
-  pip_version: '8.1.1'
   refresh_repo: True
   config: []
+  docker_py:
+    install: True
   pip:
     version: '8.1.1'
