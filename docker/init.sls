@@ -144,5 +144,6 @@ docker-py:
     {%- else %}
     - name: docker-py
     {%- endif %}
+    - upgrade: True
     - reload_modules: true
 {% endif %}
