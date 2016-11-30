@@ -5,6 +5,7 @@
 {{id}} image:
   dockerng.image_present:
     - name: {{container.image}}
+    - insecure_registry: True
 
 {{id}} container:
   dockerng.running:
