@@ -25,7 +25,7 @@
     - ports:
     {%- for port in container.ports %}
       {%- if port is string %}
-        {%- set port_binding = port.split(':', 2) %}
+        {%- set port_binding = port.split(':', 3) %}
       - "{{ port_binding[-1] }}"
         {%- if port_binding|length > 1 %}
           {%- do port_bindings.append(port) %}
