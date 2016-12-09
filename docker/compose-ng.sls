@@ -28,7 +28,7 @@
         {%- set port_binding = port.split(':', 2) %}
       - "{{ port_binding[-1] }}"
         {%- if port_binding|length > 1 %}
-          {%- do port_bindings.append(port[0]) %}
+          {%- do port_bindings.append(port) %}
         {%- endif %}
       {%- else %}
       - "{{ port }}"
