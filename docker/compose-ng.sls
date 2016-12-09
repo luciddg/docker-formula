@@ -24,14 +24,14 @@
   {%- if 'ports' in container and container.ports is iterable %}
     - ports:
     {%- for port in container.ports %}
-      {%- if port is mapping %}
-        {%- do port_bindings.append(port) %}
-      {%- elif port is string %}
+      {%- if port is string %}
         {%- set port_binding = port.split(':', 2) %}
-      - "{{ port_binding[0] }}"
+      - "{{ port_binding[-1] }}"
         {%- if port_binding|length > 1 %}
-          {%- do port_bindings.append(port) %}
+          {%- do port_bindings.append(port[0]) %}
         {%- endif %}
+      {%- else %}
+      - "{{ port }}"
       {%- endif %}
     {%- endfor %}
   {%- endif %}
