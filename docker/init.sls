@@ -74,6 +74,7 @@ docker package:
     - version: {{ docker.version }}
     {%- endif %}
     - hold: True
+    - update_holds: True
   {%- else %}
   pkg.latest:
     {%- if grains["oscodename"]|lower == 'jessie' and "version" not in docker %}
